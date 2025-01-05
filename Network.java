@@ -35,7 +35,7 @@ public class Network {
         }
         return null;
     }
-    public int getUserCunt(){
+    public int getUserCount(){
         return this.userCount;
     }
     /** Adds a new user with the given name to this network.
