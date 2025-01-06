@@ -119,25 +119,25 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String result = "";
+        String tostring = "";
         for (int i = 0; i < userCount; i++) {
             User user = users[i];
-            result += user.getName() + " -> ";
+            tostring += user.getName() + " -> ";
             boolean first = true;
             for (int j = 0; j < userCount; j++) {
                 User followee = users[j];
                 if (user.follows(followee.getName())) {
                     if (!first) {
-                        result += "  ";
+                        tostring += "  ";
                     }
-                    result += followee.getName();
+                    tostring += followee.getName();
                     first = false;
                 }
             }
             
-            result += "\n";
+            tostring += "\n";
         }
-        return result;
+        return tostring;
     }
     }
     
