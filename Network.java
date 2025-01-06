@@ -7,9 +7,9 @@ public class Network {
     private int userCount; // actual number of users in this network
 
     /** Creates a network with a given maximum number of users. */
-        public Network(int maxUserCount) {
-        this.users = new User[maxUserCount];
-        this.userCount = 0;
+    public Network(int maxUserCount) {
+            this.users = new User[maxUserCount];
+            this.userCount = 0;
     }
 
     /** Creates a network  with some users. The only purpose of this constructor is 
@@ -26,11 +26,11 @@ public class Network {
      *  If there is no such user, returns null.
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
-        for(int i = 0 ; i < userCount ; i++)
+        for(int i = 0 ; i < this.userCount ; i++)
         {
-            if(users[i].getName().equals(name))
+            if(this.users[i].getName().equals(name))
             {
-                return users[i];
+                return this.users[i];
             }
         }
         return null;
@@ -58,14 +58,11 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         if(getUser(name1) == null || getUser(name2) == null)
-        { return false;}
-        Boolean x = getUser(name1).addFollowee(name2);
-        if(x)
-        {
-            return true;
-        }else{
+        { 
             return false;
         }
+        return getUser(name1).addFollowee(name2);
+        
     }
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
@@ -118,6 +115,7 @@ public class Network {
     }
 
     // Returns a textual description of all the users in this network, and who they follow.
+    @Override
     public String toString() {
         String tostring = "";
         for (int i = 0; i < userCount; i++) {
