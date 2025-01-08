@@ -60,8 +60,12 @@ public class Network {
         if(getUser(name1) == null || getUser(name2) == null)
         { 
             return false;
+        } 
+        if(!getUser(name1).addFollowee(name2))
+        {
+            return false;
         }
-        return getUser(name1).addFollowee(name2);
+        return true;
         
     }
     /** For the user with the given name, recommends another user to follow. The recommended user is
@@ -136,7 +140,7 @@ public class Network {
                     first = false;
                 }
             }
-            if(i!= userCount)
+            if(i!= userCount-1)
             {
             tostring += "\n";
             }
