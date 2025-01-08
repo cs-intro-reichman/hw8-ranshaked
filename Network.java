@@ -126,7 +126,7 @@ public class Network {
                 User followee = users[j];
                 if (user.follows(followee.getName())) {
                     if (!first) {
-                        tostring += "  ";
+                        tostring += " ";
                     }
                     tostring += followee.getName();
                     first = false;
