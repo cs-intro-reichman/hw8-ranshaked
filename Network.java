@@ -62,12 +62,12 @@ public class Network {
             System.out.println("One of the users is not part of the Network!");
             return false;
         } 
-        if(!getUser(name1).addFollowee(name2))
+        if(getUser(name1).addFollowee(name2))
         {
             System.out.println("There was an issue adding "+ name1 + " to the following list of "+ name2);
-            return false;
+            return true;
         }
-        return true;
+        return false;
         
     }
     /** For the user with the given name, recommends another user to follow. The recommended user is
