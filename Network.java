@@ -83,13 +83,13 @@ public class Network {
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
-        int max = -1;
+        int max = 0;
         String mostPopular = null;
 
         for (int i = 0; i < userCount; i++)
          {
             int count = followeeCount(users[i].getName());
-            if (count > max) {
+            if (count >= max) {
                 max = count;
                 mostPopular = users[i].getName();
             }
