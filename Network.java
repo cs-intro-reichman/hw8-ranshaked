@@ -57,19 +57,22 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
-        if(getUser(name1) == null || getUser(name2) == null)
-        { 
+        if(getUser(name1) == null || getUser(name2) == null) { 
             System.out.println("One of the users is not part of the Network!");
-            return false;
+            return false; 
         } 
-        if(getUser(name1).addFollowee(name2))
-        {
-            System.out.println("There was an issue adding "+ name1 + " to the following list of "+ name2);
-            return true;
+        if(name1.equalsIgnoreCase(name2)) {
+            System.out.println("A user cannot follow themselves.");
+            return false; 
         }
-        return false;
         
-    }
+        if(getUser(name1).addFollowee(name2)) {
+            return true;
+        } else {
+            System.out.println("There was an issue adding " + name1 + " to the following list of " + name2);
+            return false;
+            }
+        }
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
