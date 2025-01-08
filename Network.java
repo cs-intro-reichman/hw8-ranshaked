@@ -137,10 +137,9 @@ public class Network {
             {
                 break;
             }
-            ans +=users[i].toString() + "\n";
+            ans += users[i].toString() + "\n";
         }
-        return ans.substring(0,ans.length());
-         
+        return ans.substring(0,ans.length() -1);  
     }
     }
     
