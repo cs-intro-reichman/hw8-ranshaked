@@ -38,15 +38,15 @@
     }
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-        boolean x = false;
-        for(int i = 0 ; i < this.fCount-1 ; i++)
+
+        for(int i = 0 ; i < this.fCount ; i++)
         {
              if (this.follows[i].equals(name))
             {
-                x = true;
+                 return  true;
             }
         }
-        return x;
+        return false;
     }
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
@@ -69,7 +69,7 @@
          {
             if (this.follows[i].equals(name)) 
             {
-                for (int j = i; j < this.fCount - 1; j++)
+                for (int j = i; j < this.fCount; j++)
                 {
                     this.follows[j] = this.follows[j + 1];
                 }
