@@ -117,7 +117,11 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     @Override
     public String toString() {
-        String tostring = "";
+        if(userCount == 0)
+        {
+            return "Network:";
+        }
+        String tostring = "Network:" + "\n";
         for (int i = 0; i < userCount; i++) {
             User user = users[i];
             tostring += user.getName() + " -> ";
@@ -132,8 +136,10 @@ public class Network {
                     first = false;
                 }
             }
-            
+            if(i!= userCount)
+            {
             tostring += "\n";
+            }
         }
         return tostring;
     }
