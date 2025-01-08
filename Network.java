@@ -58,18 +58,15 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         if(getUser(name1) == null || getUser(name2) == null) { 
-            System.out.println("One of the users is not part of the Network!");
             return false; 
         } 
         if(name1.equalsIgnoreCase(name2)) {
-            System.out.println("A user cannot follow themselves.");
             return false; 
         }
         
         if(getUser(name1).addFollowee(name2)) {
             return true;
         } else {
-            System.out.println("There was an issue adding " + name1 + " to the following list of " + name2);
             return false;
             }
         }
