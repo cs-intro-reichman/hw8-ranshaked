@@ -41,7 +41,7 @@
 
         for(int i = 0 ; i < this.fCount ; i++)
         {
-             if (this.follows[i].equals(name))
+             if (this.follows[i].equalsIgnoreCase(name))
             {
                  return  true;
             }
@@ -57,9 +57,9 @@
             this.follows[this.fCount] = name;
             this.fCount++;
             return true;
-        } else {
+        } 
             return false; 
-        }
+        
     }
 
     /** Removes the given name from the follows list of this user. If successful, returns true.
@@ -67,7 +67,7 @@
     public boolean removeFollowee(String name) {
         for (int i = 0; i < this.fCount; i++)
          {
-            if (this.follows[i].equals(name)) 
+            if (this.follows[i].equalsIgnoreCase(name)) 
             {
                 for (int j = i; j < this.fCount; j++)
                 {
@@ -89,7 +89,7 @@
          {
             for(int j = 0 ; j < other.fCount ; j++)
             {
-            if (this.follows[i].equals(other.follows[j]))
+            if (this.follows[i].equalsIgnoreCase(other.follows[j]))
             {
                 counter++;
             }
@@ -101,10 +101,8 @@
     /** Checks is this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
-        return this.follows(other.getName()) == true && other.follows(this.getName()) == true ;
-
-        
-        
+        return this.follows(other.getName()) && other.follows(this.getName()) ;
+   
     }
     /** Returns this user's name, and the names that s/he follows. */
     @Override
