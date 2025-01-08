@@ -73,35 +73,42 @@ public class Network {
     /** For the user with the given name, recommends another user to follow. The recommended user is
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
+        User recommendWhoToFollow = null;
         int max = 0;
-        User x = null;
-        for(int i = 0 ; i < userCount ; i++)
+        for(int i = 0 ; i <userCount ; i++)
         {
-            if(followeeCount(users[i].getName()) > max && users[i].getName().equalsIgnoreCase(name) == false)
+            if(users[i].countMutual(getUser(name))> max && !users[i].getName().equalsIgnoreCase(name))
             {
-                x = users[i];
-                max = followeeCount(users[i].getName());
+                recommendWhoToFollow = users[i];
+                max = users[i].countMutual(getUser(name));
             }
         }
-        return x.getName();
+        if(recommendWhoToFollow == null)
+        {
+            return  null;
+        }
+        return recommendWhoToFollow.getName();
     }
 
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
         int max = 0;
-        String mostPopular = null;
+        User mostPopular = null;
 
         for (int i = 0; i < userCount; i++)
          {
-            int count = followeeCount(users[i].getName());
-            if (count >= max) {
-                max = count;
-                mostPopular = users[i].getName();
+            if(followeeCount(users[i].getName()) > max)
+            {
+                mostPopular = users[i];
+                max = followeeCount(users[i].getName());
+                
             }
+        }if(mostPopular == null)
+        {
+            return null;
         }
-
-        return mostPopular;
+        return mostPopular.getName();
     }
 
     /** Returns the number of times that the given name appears in the follows lists of all
@@ -124,7 +131,7 @@ public class Network {
     @Override
     public String toString() {
         String ans = "Network:\n";
-        for (int i = 0; i < userCount-1; i++) 
+        for (int i = 0; i < users.length; i++) 
         {
             if(users[i] == null)
             {
