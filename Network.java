@@ -59,10 +59,12 @@ public class Network {
     public boolean addFollowee(String name1, String name2) {
         if(getUser(name1) == null || getUser(name2) == null)
         { 
+            System.out.println("One of the users is not part of the Network!");
             return false;
         } 
         if(!getUser(name1).addFollowee(name2))
         {
+            System.out.println("There was an issue adding "+ name1 + " to the following list of "+ name2);
             return false;
         }
         return true;
@@ -72,10 +74,10 @@ public class Network {
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
         int max = 0;
-        User x = users[0];
+        User x = null;
         for(int i = 0 ; i < userCount ; i++)
         {
-            if(followeeCount(users[i].getName()) > max && users[i].getName().equals(name) == false)
+            if(followeeCount(users[i].getName()) > max && users[i].getName().equalsIgnoreCase(name) == false)
             {
                 x = users[i];
                 max = followeeCount(users[i].getName());
@@ -122,7 +124,7 @@ public class Network {
     @Override
     public String toString() {
         String ans = "Network:\n";
-        for (int i = 0; i < userCount; i++) 
+        for (int i = 0; i < userCount-1; i++) 
         {
             if(users[i] == null)
             {
